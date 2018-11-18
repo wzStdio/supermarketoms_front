@@ -34,8 +34,8 @@
                 <li class="dropdown">
                     <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
+                    </a> -->
+<!--                     <ul class="dropdown-menu dropdown-messages">
                         <li>
                             <a href="#">
                                 <div>
@@ -217,8 +217,8 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
-                    </ul> -->
-                    <!-- /.dropdown-alerts -->
+                    </ul>
+                     /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -229,13 +229,13 @@
 <!--                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li> -->
-                        <!-- <li class="divider"></li> -->
+                        </li>
+                        <li class="divider"></li> -->
                         <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+                    <!-- /.dropdown-user 
+                </li> -->
                 <!-- /.dropdown -->
             </ul>
         </nav>
@@ -275,7 +275,7 @@
                     </li>
 
 
-                    <!-- <li>
+<!--                     <li>
                         <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -325,7 +325,7 @@
 			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            商品<!--  <small>Responsive tables</small> -->
+                            广告列表<!--  <small>Responsive tables</small> -->
                         </h1>
                     </div>
                 </div> 
@@ -337,157 +337,38 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                              <tr>
-                                 <th>商品列表</th>
+                                 <th>广告列表</th>
                              </tr>
                         </div>
                         
-                        <!-- <button data-toggle="modal" data-target="#myModal" class="btn btn-default">添加商品</button> -->
-                     <!--  Modals-->
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                              添加商品
-                            </button>
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">添加商品</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                        <form method="post" name="commodity-inf">
-                                            <div class="form-group">
-                                            <label for="categoryId">类目主键</label>
-                                            <input type="text" class="form-control" id="categoryId" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityCategory">商品类目</label>
-                                            <input type="text" class="form-control" id="commodityCategory" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityId">商品主键</label>
-                                            <input type="text" class="form-control" id="commodityId" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityName">商品名字</label>
-                                            <input type="text" class="form-control" id="commodityName" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityNum">商品数量</label>
-                                            <input type="text" class="form-control" id="commodityNum" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityPrice">商品价格</label>
-                                            <input type="text" class="form-control" id="commodityPrice" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commoditySpecification">商品规格(描述)</label>
-                                            <input type="text" class="form-control" id="commoditySpecification" placeholder="">
-                                          </div>
-                                            <div class="form-group">
-                                                <label>商品是否上架</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="1" checked="">是
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="0">否
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>是否为首页商品</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="0" checked="">是
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="1">否
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="skuCode">商品条码</label>
-                                            <input type="text" class="form-control" id="skuCode" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="token">token</label>
-                                            <input type="text" class="form-control" id="token" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityImage">上传商品图片</label>
-                                            <input type="file" id="commodityImage">   
-                                          </div>
-                                        </form>                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default" style="margin-left: 450px">添加</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- End Modals-->
 
-                        <table>
+
+<!--                         <table>
                             <tbody>
-                                <tr>
-                                    <th>
-                                        <div class="btn-group">
-                                          <button type="button" class="btn btn-default">商品展示页面选择</button>
-                                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                          </button>
-                                          <ul class="dropdown-menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                          </ul>
-                                        </div>
-                                    </th>
-
-                                    <th>
-                                        <div class="btn-group">
-                                              <button type="button" class="btn btn-default">商品类目选择</button>
-                                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                              </button>
-                                              <ul class="dropdown-menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                              </ul>
-                                        </div>
-                                    </th>
-
-                                    <th>
-                                        商品名称<input type="text" id="min" name="min">
-                                    </th>
-                                    <th>
-                                        <button type="submit" class="btn btn-default">搜索</button>
-                                    </th>
-                                </tr>
+                            <tr>
+                                <th>
+                                    电话号码:<input type="text" id="min" name="min">
+                                </th>
+                                <th>
+                                     订单号:<input type="text" id="min" name="min">
+                                </th>
+                                <th>
+                                    <button type="submit" class="btn btn-default">搜索</button>
+                                </th>
+                            </tr>
                             </tbody>
-                        </table>
+                        </table> -->
 
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>商品名称</th>
-                                            <th>商品价格</th>
-                                            <th>商品规格</th>
-                                            <th>商品图片</th>
-                                            <th>商品数量</th>
-                                            <th>商品类目</th>
-                                            <th>商品展示页面</th>
-                                            <th>操作</th>
+                                            <th>广告内容</th>
+                                            <th>广告图片</th>
+                                            <th>广告标题</th>
+                                            <th>创建时间</th>
+                                            <th>是否禁用</th>
                                         </tr>
                                     </thead>
                                     <tbody>
