@@ -340,7 +340,47 @@
                                  <th>广告列表</th>
                              </tr>
                         </div>
-                        
+
+                     <!--  Modals-->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                              添加广告
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">添加广告</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <form method="post" name="commodity-inf">
+                                            <div class="form-group">
+                                            <label for="categoryId">广告标题</label>
+                                            <input type="text" class="form-control" id="categoryId" placeholder="">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="commodityCategory">广告内容</label>
+                                            <input type="text" class="form-control" id="commodityCategory" placeholder="">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="commodityImage">上传广告图片</label>
+                                            <input type="file" id="commodityImage">   
+                                          </div>
+                                        </form>                                        
+                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default" style="margin-left: 450px">添加</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Modals-->
 
 
 <!--                         <table>
