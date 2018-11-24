@@ -229,9 +229,10 @@
 <!--                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li> -->
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li> -->
+                        <li><a><i class="fa fa-user fa-fw"></i>&nbsp;<span id="username">User</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="./login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user 
@@ -339,14 +340,13 @@
                              <tr>
                                  <th>广告列表</th>
                              </tr>
+                            <button class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#myModal">
+                              添加广告
+                            </button>
                         </div>
 
                      <!--  Modals-->
-                    <div class="panel panel-default">
                         <div class="panel-body">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                              添加广告
-                            </button>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -358,20 +358,20 @@
                                         <form method="post" name="commodity-inf">
                                             <div class="form-group">
                                             <label for="categoryId">广告标题</label>
-                                            <input type="text" class="form-control" id="categoryId" placeholder="">
+                                            <input type="text" class="form-control" id="adTittle" placeholder="">
                                           </div>
                                           <div class="form-group">
                                             <label for="commodityCategory">广告内容</label>
-                                            <input type="text" class="form-control" id="commodityCategory" placeholder="">
+                                            <input type="text" class="form-control" id="adContent" placeholder="">
                                           </div>
                                           <div class="form-group">
                                             <label for="commodityImage">上传广告图片</label>
-                                            <input type="file" id="commodityImage">   
+                                            <input type="file" id="adImage">   
                                           </div>
                                         </form>                                        
                                     </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default" style="margin-left: 450px">添加</button>
+                                            <button type="submit" class="btn btn-default" style="margin-left: 450px" onclick="addAd()">添加</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                         </div>
@@ -379,7 +379,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                      <!-- End Modals-->
 
 
@@ -404,14 +403,14 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>广告内容</th>
-                                            <th>广告图片</th>
                                             <th>广告标题</th>
+                                            <th>广告图片</th>
+                                            <th>广告内容</th>
                                             <th>创建时间</th>
                                             <th>是否禁用</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="table-body">
                                         <!-- <tr class="odd gradeX">
                                             <td>Trident</td>
                                             <td>Internet Explorer 4.0</td>
@@ -440,6 +439,8 @@
          <!-- /. PAGE WRAPPER  -->
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
+    <!-- Date js -->
+    <!-- <script src="https://cdn.bootcss.com/jquery-dateFormat/1.0/jquery.dateFormat.js"></script> -->
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
@@ -450,12 +451,72 @@
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
         <script>
+            //时间戳转时间
+            function timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = date.getDate() + ' ';
+                var h = date.getHours() + ':';
+                var m = date.getMinutes() + ':';
+                var s = date.getSeconds();
+                return Y+M+D+h+m+s;
+            }
+
             $(document).ready(function () {
-                $('#dataTables-example').dataTable({
-                    bFilter: false,    //去掉搜索框方法三：这种方法可以
-                    bLengthChange: false,   //去掉每页显示多少条数据方法
-                });
+                // $('#dataTables-example').dataTable({
+                //     bFilter: false,    //去掉搜索框方法三：这种方法可以
+                //     bLengthChange: false,   //去掉每页显示多少条数据方法
+                // });
             });
+            document.getElementById('username').innerHTML = sessionStorage.getItem('username')
+
+            var mydata = {"token": sessionStorage.getItem('token')}
+            var reqdata = JSON.stringify(mydata)
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.14.214:9033/api/advertising/getAllAdvertising",
+                contentType: "application/json;charset=utf-8",
+                data: reqdata,
+                success: function(res){
+                    if (res.code == "0000") {
+                        //添加订单记录
+                        for (var i = 0; i < res.data.length; i++) {
+                            var disable;
+                            var date = timestampToTime(res.data[i].createTime)
+                            //console.log(date)
+                            if (res.data[i].disable == '0') {
+                                disable = "否"
+                            } else {
+                                disable = "是"
+                            }
+
+                            //添加到表格中
+                            var tr = "<tr class='odd gradeX'>";
+                            tr += "<td>" + res.data[i].advertisingTitle + "</td>";
+                            tr += "<td>" + res.data[i].advertisingImage + "</td>";
+                            tr += "<td>" + res.data[i].advertisingContent + "</td>";   
+                            tr += "<td>" + date + "</td>";
+                            tr += "<td>" + disable + "</td>";
+                            tr += "</tr>";
+                            $("#table-body").append(tr);
+                        }
+                        $('#dataTables-example').dataTable({
+                            //bFilter: false,    //去掉搜索框方法三：这种方法可以
+                            bLengthChange: false,   //去掉每页显示多少条数据方法
+                            striped: true,  //隔行变色的效果
+
+                        });
+                    } else {
+                        alert(res.msg)
+                    }
+                }
+            })
+
+            //添加广告
+            function addAd(){
+
+            }
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>

@@ -230,8 +230,9 @@
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li> -->
-                        <!-- <li class="divider"></li> -->
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a><i class="fa fa-user fa-fw"></i>&nbsp;<span id="username">User</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="./login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -339,16 +340,16 @@
                              <tr>
                                  <th>商品列表</th>
                              </tr>
+                            <button class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#myModal">
+                              添加商品
+                            </button>
                         </div>
                         
                         <!-- <button data-toggle="modal" data-target="#myModal" class="btn btn-default">添加商品</button> -->
                      <!--  Modals-->
-                    <div class="panel panel-default">
+                    
                         <div class="panel-body">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                              添加商品
-                            </button>
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -357,18 +358,31 @@
                                         </div>
                                         <div class="modal-body">
                                         <form method="post" name="commodity-inf">
-                                            <div class="form-group">
+<!--                                             <div class="form-group">
                                             <label for="categoryId">类目主键</label>
                                             <input type="text" class="form-control" id="categoryId" placeholder="">
-                                          </div>
+                                          </div> -->
                                           <div class="form-group">
                                             <label for="commodityCategory">商品类目</label>
-                                            <input type="text" class="form-control" id="commodityCategory" placeholder="">
-                                          </div>
-                                          <div class="form-group">
+                                            <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                请选择商品类目<b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">jmeter</a></li>
+                                                <li><a href="#">EJB</a></li>
+                                                <li><a href="#">Jasper Report</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">分离的链接</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">另一个分离的链接</a></li>
+                                            </ul>
+                                        </li>
+                                        </div>
+<!--                                           <div class="form-group">
                                             <label for="commodityId">商品主键</label>
                                             <input type="text" class="form-control" id="commodityId" placeholder="">
-                                          </div>
+                                          </div> -->
                                           <div class="form-group">
                                             <label for="commodityName">商品名字</label>
                                             <input type="text" class="form-control" id="commodityName" placeholder="">
@@ -394,30 +408,30 @@
                                                     <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="0">否
                                                 </label>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group-1">
                                                 <label>是否为首页商品</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="0" checked="">是
+                                                <label class="radio-inline-1">
+                                                    <input type="radio" name="optionsRadiosInline1" id="optionsRadiosInline3" value="0" checked="">是
                                                 </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="1">否
+                                                <label class="radio-inline-1">
+                                                    <input type="radio" name="optionsRadiosInline1" id="optionsRadiosInline4" value="1">否
                                                 </label>
                                             </div>
                                             <div class="form-group">
                                             <label for="skuCode">商品条码</label>
                                             <input type="text" class="form-control" id="skuCode" placeholder="">
                                           </div>
-                                          <div class="form-group">
+<!--                                           <div class="form-group">
                                             <label for="token">token</label>
                                             <input type="text" class="form-control" id="token" placeholder="">
-                                          </div>
+                                          </div> -->
                                           <div class="form-group">
                                             <label for="commodityImage">上传商品图片</label>
                                             <input type="file" id="commodityImage">   
                                           </div>
                                         </form>                                        </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default" style="margin-left: 450px">添加</button>
+                                            <button type="submit" class="btn btn-default" style="margin-left: 450px" onclick="addCommodity">添加</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                         </div>
@@ -425,13 +439,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                      <!-- End Modals-->
 
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>
+<!--                         <table>
+                            <tbody> -->
+                                <!-- <tr> -->
+<!--                                     <th>
                                         <div class="btn-group">
                                           <button type="button" class="btn btn-default">商品展示页面选择</button>
                                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -446,9 +460,9 @@
                                             <li><a href="#">Separated link</a></li>
                                           </ul>
                                         </div>
-                                    </th>
+                                    </th> -->
 
-                                    <th>
+<!--                                     <th>
                                         <div class="btn-group">
                                               <button type="button" class="btn btn-default">商品类目选择</button>
                                               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -463,17 +477,17 @@
                                                 <li><a href="#">Separated link</a></li>
                                               </ul>
                                         </div>
-                                    </th>
+                                    </th> -->
 
-                                    <th>
+<!--                                     <th>
                                         商品名称<input type="text" id="min" name="min">
                                     </th>
                                     <th>
                                         <button type="submit" class="btn btn-default">搜索</button>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </th> -->
+                    <!--             </tr> -->
+<!--                             </tbody>
+                        </table> -->
 
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -482,7 +496,7 @@
                                         <tr>
                                             <th>商品名称</th>
                                             <th>商品价格</th>
-                                            <th>商品规格</th>
+                                            <th>商品描述</th>
                                             <th>商品图片</th>
                                             <th>商品数量</th>
                                             <th>商品类目</th>
@@ -530,11 +544,80 @@
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
         <script>
             $(document).ready(function () {
-                $('#dataTables-example').dataTable({
-                    bFilter: false,    //去掉搜索框方法三：这种方法可以
-                    bLengthChange: false,   //去掉每页显示多少条数据方法
-                });
+                // $('#dataTables-example').dataTable({
+                //     bFilter: false,    //去掉搜索框方法三：这种方法可以
+                //     bLengthChange: false,   //去掉每页显示多少条数据方法
+                // });
             });
+            //时间戳转时间
+            function timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = date.getDate() + ' ';
+                var h = date.getHours() + ':';
+                var m = date.getMinutes() + ':';
+                var s = date.getSeconds();
+                return Y+M+D+h+m+s;
+            }
+            //设置右上角账号名称
+            document.getElementById('username').innerHTML = sessionStorage.getItem('username');
+            //获取商品列表
+            var mydata = {
+                "pageNo": 1,
+                "pageSize": 1000,
+                "token": sessionStorage.getItem('token')
+            }
+            var reqdata = JSON.stringify(mydata)
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.14.214:9033/api/commodity/getCommodityList",
+                contentType: "application/json;charset=utf-8",
+                data: reqdata,
+                success: function(res){
+                    if (/*res.code == "0000"*/true) {
+                        console.log(res)
+
+                        //添加订单记录
+                        for (var i = 0; i < res.data.length; i++) {
+                            //数据转化处理
+                            var disable;
+                            // var date = timestampToTime(res.data[i].createTime)
+                            console.log(date)
+                            if (res.data[i].disable == '0') {
+                                disable = "否"
+                            } else {
+                                disable = "是"
+                            }
+                            //添加到table
+                            var tr = "<tr class='odd gradeX'>";
+                            tr += "<td>" + res.data[i].commodityName + "</td>";
+                            tr += "<td>" + res.data[i].commodityPrice + "</td>";
+                            tr += "<td>" + res.data[i].commoditySpecification + "</td>";   
+                            tr += "<td>" + res.data[i].commodityImage + "</td>";
+                            tr += "<td>" + res.data[i].commodityNum + "</td>";
+                            tr += "<td>" + res.data[i].commodityCategory + "</td>";
+                            tr += "<td>" + res.data[i].disable + "</td>";
+                            tr += "<td>" + res.data[i].skuCode + "</td>";
+                            tr += "</tr>";
+                            $("#table-body").append(tr);
+                        }
+                        $('#dataTables-example').dataTable({
+                            //bFilter: false,    //去掉搜索框方法三：这种方法可以
+                            bLengthChange: false,   //去掉每页显示多少条数据方法
+                            striped: true,  //隔行变色的效果
+
+                        });
+                    } else {
+                        console.log(res)
+                        alert(res.msg)
+                    }
+                }
+            })
+
+            function addCommodity(){
+
+            }
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>

@@ -229,10 +229,10 @@
 <!--                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li> -->
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        </li> -->
+                        <li><a><i class="fa fa-user fa-fw"></i>&nbsp;<span id="username">User</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="./login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -343,21 +343,21 @@
                         
 
 
-                        <table>
+<!--                         <table>
                             <tbody>
                             <tr>
                                 <th>
-                                    电话号码:<input type="text" id="min" name="min">
+                                    电话号码:<input type="text" id="telephone" name="min">
                                 </th>
                                 <th>
-                                     订单号:<input type="text" id="min" name="min">
+                                     订单号:<input type="text" id="orderId" name="min">
                                 </th>
                                 <th>
-                                    <button type="submit" class="btn btn-default">搜索</button>
+                                    <button type="submit" class="btn btn-default" onclick="searchfun()">搜索</button>
                                 </th>
                             </tr>
                             </tbody>
-                        </table>
+                        </table> -->
 
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -375,15 +375,14 @@
                                             <th>操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- <tr class="odd gradeX">
+                                    <tbody id="table-body">
+<!--                                         <tr class="odd gradeX">
                                             <td>Trident</td>
                                             <td>Internet Explorer 4.0</td>
                                             <td>Win 95+</td>
                                             <td class="center">4</td>
                                             <td class="center">X</td>
-                                        </tr>
-                                        -->
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -413,24 +412,60 @@
      <!-- DATA TABLE SCRIPTS -->
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
+    <script>
             $(document).ready(function () {
-                $('#dataTables-example').dataTable({
-                    bFilter: false,    //去掉搜索框方法三：这种方法可以
-                    bLengthChange: false,   //去掉每页显示多少条数据方法
-                });
+                // $('#dataTables-example').dataTable({
+                //     bFilter: false,    //去掉搜索框方法三：这种方法可以
+                //     bLengthChange: false,   //去掉每页显示多少条数据方法
+                // });
             });
-            load()
+            document.getElementById('username').innerHTML = sessionStorage.getItem('username')
+            var mydata = {"token": sessionStorage.getItem('token')}
+            console.log(sessionStorage.getItem('token'))
+            var reqdata = JSON.stringify(mydata)
+            $.ajax({
+                type: "POST",
+                url: "http://47.106.14.214:9033/api/order/getOrderList",
+                contentType: "application/json;charset=utf-8",
+                data: reqdata,
+                success: function(res){
+                    if (res.code == "0000") {
+                        //添加订单记录
+                        for (var i = 0; i < res.data.length; i++) {
+                            var tr = "<tr class='odd gradeX'>";
+                            tr += "<td>" + res.data[i].orderId + "</td>";
+                            tr += "<td>" + res.data[i].commodityName + "</td>";
+                            tr += "<td>" + res.data[i].orderNum + "</td>";   
+                            tr += "<td>" + res.data[i].orderPrice + "</td>";
+                            tr += "<td>" + res.data[i].userName + "</td>";
+                            tr += "<td>" + res.data[i].telephone + "</td>";
+                            tr += "<td>" + res.data[i].fullAddress + "</td>";
+                            tr += "<td>" + res.data[i].orderStatus + "</td>";
+                            tr += "<td>" + res.data[i].skuCode + "</td>";
+                            tr += "</tr>";
+                            $("#table-body").append(tr);
+                        }
+                        $('#dataTables-example').dataTable({
+                            //bFilter: false,    //去掉搜索框方法三：这种方法可以
+                            bLengthChange: false,   //去掉每页显示多少条数据方法
+                            striped: true,  //隔行变色的效果
+
+                        });
+                    } else {
+                        alert(res.msg)
+                    }
+                }
+            })
+
+            // function searchfun(){
+            //     var orderId = document.getElementById('orderId').value
+            //     var telephone = document.getElementById('telephone').value
+            //     var table = $('dataTables-example').dataTable().fnFilter(telephone)
+            //     // table.column(0).search(orderId).column(5).search(telephone).draw()
+            // }
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-
-    <script>
-        function load()
-        {
-            Alerts('abc')
-        }
-    </script>
     
    
 </body>
