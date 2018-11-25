@@ -355,7 +355,7 @@
                                             <h4 class="modal-title" id="myModalLabel">添加广告</h4>
                                         </div>
                                         <div class="modal-body">
-                                        <form method="post" name="commodity-inf">
+                                        <form method="post" name="commodity-inf" id="myform">
                                             <div class="form-group">
                                             <label for="categoryId">广告标题</label>
                                             <input type="text" class="form-control" id="adTittle" placeholder="">
@@ -465,10 +465,42 @@
 
             //添加广告
             function addAd(){
+                //先上传图片
+                var imageSrc
+                var form = new FormData()
+                form.append("files",$('#adImage')[0].files[0])
+                $.ajax({
+                    type: 'POST',
+                    url: "http://47.106.14.214:9033/api/uploadImage/uploadImg",
+                    data: form,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    mimeType:"multipart/form-data",
+                    async: false,
+                    success: function(res){
+                        if (res.code == "0000") {
+                            console.log('图片上传成功')
+                            console.log(res)
+                            imageSrc = res.data
+                        }else{
+                            console.log(res)
+                            //imageSrc = "http://fisherwy.github.io/uploads/Aria_Downloadlink.png"
+                        }
+                        
+                    }
+                })
+
+                if (imageSrc == "") {
+                    console.log('图片上传失败')
+                    return
+                }
+
+                //拿返回来的图片链接进行广告添加
                 var mydata = {
                     "advertisingTitle": document.getElementById('adTittle').value,
                     "advertisingContent": document.getElementById('adContent').value,
-                    "advertisingImage": "http://fisherwy.github.io/uploads/Aria_Downloadlink.png",
+                    "advertisingImage": imageSrc,
                     "token": sessionStorage.getItem('token')
                 }
                 var reqdata = JSON.stringify(mydata)
@@ -477,6 +509,7 @@
                     url: "http://47.106.14.214:9033/api/advertising/addAdvertising",
                     contentType: "application/json;charset=utf-8",
                     data: reqdata,
+                    async: false,
                     success: function(res){
                         if (res.code = "0000") {
                             alert('添加成功')
