@@ -364,20 +364,17 @@
                                           </div> -->
                                           <div class="form-group">
                                             <label for="commodityCategory">商品类目</label>
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">请选择商品类目<span class="caret"></span></button>
+                                            <ul class="dropdown-menu" id="dropdown_menu">
+                                            </ul>
+<!--                                             <label for="commodityCategory">商品类目</label>
                                             <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 请选择商品类目<b class="caret"></b>
                                             </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">jmeter</a></li>
-                                                <li><a href="#">EJB</a></li>
-                                                <li><a href="#">Jasper Report</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">分离的链接</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">另一个分离的链接</a></li>
+                                            <ul class="dropdown-menu" id="dropdown_menu">
                                             </ul>
-                                        </li>
+                                        </li> -->
                                         </div>
 <!--                                           <div class="form-group">
                                             <label for="commodityId">商品主键</label>
@@ -544,11 +541,14 @@
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
         <script>
             $(document).ready(function () {
-                // $('#dataTables-example').dataTable({
-                //     bFilter: false,    //去掉搜索框方法三：这种方法可以
-                //     bLengthChange: false,   //去掉每页显示多少条数据方法
-                // });
+                //设置右上角账号名称
+                document.getElementById('username').innerHTML = sessionStorage.getItem('username');
+                //刷新table
+                reFresh()
+                //获取商品类目
+                getAllCategory()
             });
+
             //时间戳转时间
             function timestampToTime(timestamp) {
                 var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -560,9 +560,10 @@
                 var s = date.getSeconds();
                 return Y+M+D+h+m+s;
             }
-            //设置右上角账号名称
-            document.getElementById('username').innerHTML = sessionStorage.getItem('username');
+
             //获取商品列表
+            function reFresh()
+            {
             var mydata = {
                 "pageNo": 1,
                 "pageSize": 1000,
@@ -576,14 +577,14 @@
                 data: reqdata,
                 success: function(res){
                     if (/*res.code == "0000"*/true) {
-                        console.log(res)
+                        //console.log(res)
 
                         //添加订单记录
                         for (var i = 0; i < res.data.length; i++) {
                             //数据转化处理
                             var disable;
                             // var date = timestampToTime(res.data[i].createTime)
-                            console.log(date)
+                            //console.log(date)
                             if (res.data[i].disable == '0') {
                                 disable = "否"
                             } else {
@@ -614,6 +615,40 @@
                     }
                 }
             })
+        }
+
+            function getAllCategory(){
+                var mydata = {"token": sessionStorage.getItem('token')}
+                var reqdata = JSON.stringify(mydata)
+                $.ajax({
+                    type: "POST",
+                    url: "http://47.106.14.214:9033/api/category/getAllCategory",
+                    contentType: "application/json;charset=utf-8",
+                    data: reqdata,
+                    success: function(res){
+                        if (res.code == "0000") {
+                            sessionStorage.setItem('category', res.data)
+                            $('#dropdown_menu').contents().remove()
+                            for (var i = 0; i < res.data.length; i++) {
+                                var a = "<li><a onclick=categoryChange("+i+")>"+res.data[i].categoryName+"</a></li>"
+                                // $(<li><a href="#" id=res.data[i].categoryType value=res.data[i].categoryId>res.data[i].categoryName</a></li>).appendTo('#moderator-s');
+                                $('#dropdown_menu').append(a)
+                            }
+                            console.log('更新成功')
+                        }else {
+                            alert(res.msg)
+                        }
+                    }
+                })
+            }
+
+            function categoryChange(i){
+                console.log(i)
+                var category = sessionStorage.getItem('category')
+                console.log(category)
+                var index = parseInt(i)
+                console.log(category[index].categoryName)
+            }
 
             function addCommodity(){
 

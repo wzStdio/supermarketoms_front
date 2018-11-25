@@ -463,14 +463,40 @@
                 return Y+M+D+h+m+s;
             }
 
-            $(document).ready(function () {
-                // $('#dataTables-example').dataTable({
-                //     bFilter: false,    //去掉搜索框方法三：这种方法可以
-                //     bLengthChange: false,   //去掉每页显示多少条数据方法
-                // });
-            });
-            document.getElementById('username').innerHTML = sessionStorage.getItem('username')
+            //添加广告
+            function addAd(){
+                var mydata = {
+                    "advertisingTitle": document.getElementById('adTittle').value,
+                    "advertisingContent": document.getElementById('adContent').value,
+                    "advertisingImage": "http://fisherwy.github.io/uploads/Aria_Downloadlink.png",
+                    "token": sessionStorage.getItem('token')
+                }
+                var reqdata = JSON.stringify(mydata)
+                $.ajax({
+                    type: 'POST',
+                    url: "http://47.106.14.214:9033/api/advertising/addAdvertising",
+                    contentType: "application/json;charset=utf-8",
+                    data: reqdata,
+                    success: function(res){
+                        if (res.code = "0000") {
+                            alert('添加成功')
+                        }
+                        else {
+                            alert(res.msg)
+                        }
+                        $('#myModal').modal('hide')
+                        window.location.reload()
+                    }
+                })
+            }
 
+            $(document).ready(function () {
+                document.getElementById('username').innerHTML = sessionStorage.getItem('username')
+                reFresh()
+            });
+
+            function reFresh()
+            {
             var mydata = {"token": sessionStorage.getItem('token')}
             var reqdata = JSON.stringify(mydata)
             $.ajax({
@@ -512,11 +538,7 @@
                     }
                 }
             })
-
-            //添加广告
-            function addAd(){
-
-            }
+        }
     </script>
          <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
