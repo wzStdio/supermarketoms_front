@@ -628,12 +628,14 @@
                     success: function(res){
                         if (res.code == "0000") {
                             sessionStorage.setItem('category', res.data)
-                            $('#dropdown_menu').contents().remove()
+                            // $('#dropdown_menu').contents().remove()
+                            var h = "";
                             for (var i = 0; i < res.data.length; i++) {
-                                var a = "<li><a onclick=categoryChange("+i+")>"+res.data[i].categoryName+"</a></li>"
+                                // var a = "<li><a onclick=categoryChange("+i+")>"+res.data[i].categoryName+"</a></li>"
+                                h += "<option value='" + i + "'>" + res.data[i].categoryName + "</option>";  
                                 // $(<li><a href="#" id=res.data[i].categoryType value=res.data[i].categoryId>res.data[i].categoryName</a></li>).appendTo('#moderator-s');
-                                $('#dropdown_menu').append(a)
                             }
+                            $('#dropdown_menu').append(h)
                             console.log('更新成功')
                         }else {
                             alert(res.msg)
