@@ -366,7 +366,7 @@
                                           </div>
                                           <div class="form-group">
                                             <label for="commodityImage">上传广告图片</label>
-                                            <input type="file" id="adImage">   
+                                            <input type="file" id="adImage" data-preview-file-type="text">
                                           </div>
                                         </form>                                        
                                     </div>
@@ -450,6 +450,8 @@
      <!-- DATA TABLE SCRIPTS -->
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script src="assets/js/locales/zh.js"></script>
+    <script src="assets/js/fileinput.min.js"></script>
         <script>
             //时间戳转时间
             function timestampToTime(timestamp) {
@@ -526,6 +528,18 @@
             $(document).ready(function () {
                 document.getElementById('username').innerHTML = sessionStorage.getItem('username')
                 reFresh()
+                $('#adImage').fileinput({
+                    'language': 'zh',
+                    'uploadUrl': "http://47.106.14.214:9033/api/uploadImage/uploadImg",
+                    'allowedFileExtensions': ['jpg','jpeg','png'],
+                    'showUpload': true,
+                    'previewFileType': 'any',
+                    'showPreview': false,
+                    'showRemove': true,
+                    'dropZoneEnabled': false,
+                    'maxFileCount': 1,
+                    'enctype': 'multipart/form-data',
+                })
             });
 
             function reFresh()
