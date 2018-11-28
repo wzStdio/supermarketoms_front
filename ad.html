@@ -366,7 +366,9 @@
                                           </div>
                                           <div class="form-group">
                                             <label for="commodityImage">上传广告图片</label>
-                                            <input type="file" id="adImage" data-preview-file-type="text">
+                                            <input type="file" name="multipartFile" id="multipartFile" multiple class="file-loading" />
+                                            <!-- <input type="file" id="adImage" multiple class="file-loading"> -->
+                                            <!-- <button type="submit" onclick="picture()">上传</button> -->
                                           </div>
                                         </form>                                        
                                     </div>
@@ -553,11 +555,13 @@
                     }
                 })
             }
+            
 
             $(document).ready(function () {
                 document.getElementById('username').innerHTML = sessionStorage.getItem('username')
                 reFresh()
-                $('#adImage').fileinput({
+
+                $('#multipartFile').fileinput({
                     'language': 'zh',
                     'uploadUrl': "http://47.106.14.214:9033/api/uploadImage/uploadImg",
                     'allowedFileExtensions': ['jpg','jpeg','png'],
@@ -569,6 +573,7 @@
                     'maxFileCount': 1,
                     'enctype': 'multipart/form-data',
                 })
+                
             });
 
             function reFresh()
