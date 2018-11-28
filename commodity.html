@@ -497,11 +497,11 @@
                                             <th>商品图片</th>
                                             <th>商品数量</th>
                                             <th>商品类目</th>
-                                            <th>商品展示页面</th>
+                                            <th>是否上架</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="table-body">
                                         <!-- <tr class="odd gradeX">
                                             <td>Trident</td>
                                             <td>Internet Explorer 4.0</td>
@@ -549,6 +549,35 @@
                 getAllCategory()
             });
 
+            //商品操作
+            function operateCommodity(disable,btn){
+                var status
+                if (disable=='0') {
+                    console.log('点击将下架')
+                    status = 1
+                } else {
+                    console.log('点击将上架')
+                    status = 0
+                }
+                var mydata = {
+                    "commodityId": btn.value,
+                    "disable": status,
+                    "token": sessionStorage.getItem('token')
+                }
+                var reqdata = JSON.stringify(mydata)
+                $.ajax({
+                    method: "POST",
+                    url: "http://47.106.14.214:9033/api/commodity/upOrDownCommodity",
+                    contentType: "application/json;charset=utf-8",
+                    data: reqdata,
+                    async: false,
+                    success: function(res){
+                        alert(res.msg)
+                    }
+                })
+                window.location.reload()
+            }
+
             //时间戳转时间
             function timestampToTime(timestamp) {
                 var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
@@ -576,30 +605,33 @@
                 contentType: "application/json;charset=utf-8",
                 data: reqdata,
                 success: function(res){
-                    if (/*res.code == "0000"*/true) {
-                        //console.log(res)
+                    if (res.code == "0000") {
+                        var list = res.data.data
+                        // console.log(list)
 
                         //添加订单记录
-                        for (var i = 0; i < res.data.length; i++) {
+                        for (var i = 0; i < list.length; i++) {
                             //数据转化处理
-                            var disable;
+                            var disable,btnText;
                             // var date = timestampToTime(res.data[i].createTime)
-                            //console.log(date)
-                            if (res.data[i].disable == '0') {
-                                disable = "否"
-                            } else {
+                            if (list[i].disable == '0') {
                                 disable = "是"
+                                btnText = "下架"
+                            } else {
+                                disable = "否"
+                                btnText = "上架"
                             }
                             //添加到table
                             var tr = "<tr class='odd gradeX'>";
-                            tr += "<td>" + res.data[i].commodityName + "</td>";
-                            tr += "<td>" + res.data[i].commodityPrice + "</td>";
-                            tr += "<td>" + res.data[i].commoditySpecification + "</td>";   
-                            tr += "<td>" + res.data[i].commodityImage + "</td>";
-                            tr += "<td>" + res.data[i].commodityNum + "</td>";
-                            tr += "<td>" + res.data[i].commodityCategory + "</td>";
-                            tr += "<td>" + res.data[i].disable + "</td>";
-                            tr += "<td>" + res.data[i].skuCode + "</td>";
+                            tr += "<td>" + list[i].commodityName + "</td>";
+                            tr += "<td>" + list[i].commodityPrice + "</td>";
+                            tr += "<td>" + list[i].commoditySpecification + "</td>";   
+                            tr += "<td>" + list[i].commodityImage + "</td>";
+                            tr += "<td>" + list[i].commodityNum + "</td>";
+                            tr += "<td>" + list[i].commodityCategory + "</td>";
+                            tr += "<td>" + disable + "</td>";
+                            tr += "<td><button onclick='operateCommodity("+list[i].disable+",this)' class='btn btn-primary' value='"+list[i].commodityId+"'>"+btnText+"</button></td>";
+                            tr += "</tr>";
                             tr += "</tr>";
                             $("#table-body").append(tr);
                         }
@@ -636,7 +668,7 @@
                                 // $(<li><a href="#" id=res.data[i].categoryType value=res.data[i].categoryId>res.data[i].categoryName</a></li>).appendTo('#moderator-s');
                             }
                             $('#dropdown_menu').append(h)
-                            console.log('更新成功')
+                            console.log('更新商品类目成功')
                         }else {
                             alert(res.msg)
                         }
