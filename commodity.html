@@ -552,11 +552,11 @@
             //商品操作
             function operateCommodity(disable,btn){
                 var status
-                if (disable=='0') {
-                    console.log('点击将下架')
+                if (disable == 0) {
+                    console.log('点击将上架')
                     status = 1
                 } else {
-                    console.log('点击将上架')
+                    console.log('点击将下架')
                     status = 0
                 }
                 var mydata = {
@@ -596,6 +596,7 @@
             var mydata = {
                 "pageNo": 1,
                 "pageSize": 1000,
+                "disable": 1,
                 "token": sessionStorage.getItem('token')
             }
             var reqdata = JSON.stringify(mydata)
@@ -615,11 +616,11 @@
                             var disable,btnText;
                             // var date = timestampToTime(res.data[i].createTime)
                             if (list[i].disable == '0') {
-                                disable = "是"
-                                btnText = "下架"
-                            } else {
                                 disable = "否"
                                 btnText = "上架"
+                            } else {
+                                disable = "是"
+                                btnText = "下架"
                             }
                             //添加到table
                             var tr = "<tr class='odd gradeX'>";
