@@ -1,0 +1,32 @@
+.mycenter
+{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 600px;
+    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.mycenter mysign
+{
+    width: 440px;
+}
+.mycenter input,button
+{
+    margin-top: 2%;
+    margin-bottom: 2%
+}
+.rempswChecBox{
+    margin: 0px 0px 0px 0px;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+.rempswLab{
+    vertical-align: middle;
+    display: inline;
+    color: #666;
+    font-size: 12px;
+    margin: 0 0 0 0;
+}

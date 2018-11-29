@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-	<!-- Bootstrap Styles-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FontAwesome Styles-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- Morris Chart Styles-->
-   
-        <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css" rel="stylesheet" />
-     <!-- Google Fonts-->
-   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-     <!-- TABLE STYLES-->
-    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <!-- Bootstrap Styles-->
+  <link href="assets/css/bootstrap.css" rel="stylesheet" />
+  <!-- FontAwesome Styles-->
+  <link href="assets/css/font-awesome.css" rel="stylesheet" />
+  <!-- Morris Chart Styles-->
+
+  <!-- Custom Styles-->
+  <link href="assets/css/custom-styles.css" rel="stylesheet" />
+  <!-- Google Fonts-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <!-- TABLE STYLES-->
+  <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div id="wrapper">
@@ -31,56 +31,6 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Doe</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Today</em>
-                                    </span>
-                                </div>
-                                <div>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem Ipsum has been the industry's standard dummy text ever since an kwilnw...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem Ipsum has been the industry's standard dummy text ever since the...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul> -->
-                    <!-- /.dropdown-messages -->
-                </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -323,32 +273,32 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-			 <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
                             商品<!--  <small>Responsive tables</small> -->
                         </h1>
                     </div>
                 </div> 
-                 <!-- /. ROW  -->
-               
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                             <tr>
-                                 <th>商品列表</th>
-                             </tr>
-                            <button class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#myModal">
-                              添加商品
-                            </button>
-                        </div>
-                        
-                        <!-- <button data-toggle="modal" data-target="#myModal" class="btn btn-default">添加商品</button> -->
-                     <!--  Modals-->
-                    
-                        <div class="panel-body">
+                <!-- /. ROW  -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               <tr>
+                                   <th>商品列表</th>
+                               </tr>
+                               <button class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#myModal">
+                                  添加商品
+                              </button>
+                          </div>
+
+                          <!-- <button data-toggle="modal" data-target="#myModal" class="btn btn-default">添加商品</button> -->
+                          <!--  Modals-->
+
+                          <div class="panel-body">
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -357,45 +307,29 @@
                                             <h4 class="modal-title" id="myModalLabel">添加商品</h4>
                                         </div>
                                         <div class="modal-body">
-                                        <form method="post" name="commodity-inf">
-<!--                                             <div class="form-group">
-                                            <label for="categoryId">类目主键</label>
-                                            <input type="text" class="form-control" id="categoryId" placeholder="">
-                                          </div> -->
-                                          <div class="form-group">
-                                            <label for="commodityCategory">商品类目</label>
-                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">请选择商品类目<span class="caret"></span></button>
-                                            <ul class="dropdown-menu" id="dropdown_menu">
-                                            </ul>
-<!--                                             <label for="commodityCategory">商品类目</label>
-                                            <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                请选择商品类目<b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu" id="dropdown_menu">
-                                            </ul>
-                                        </li> -->
-                                        </div>
-<!--                                           <div class="form-group">
-                                            <label for="commodityId">商品主键</label>
-                                            <input type="text" class="form-control" id="commodityId" placeholder="">
-                                          </div> -->
-                                          <div class="form-group">
-                                            <label for="commodityName">商品名字</label>
-                                            <input type="text" class="form-control" id="commodityName" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityNum">商品数量</label>
-                                            <input type="text" class="form-control" id="commodityNum" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commodityPrice">商品价格</label>
-                                            <input type="text" class="form-control" id="commodityPrice" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="commoditySpecification">商品规格(描述)</label>
-                                            <input type="text" class="form-control" id="commoditySpecification" placeholder="">
-                                          </div>
+                                            <form method="post" name="commodity-inf">
+                                              <div class="form-group">
+                                                <label for="commodityCategory">商品类目</label>
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">请选择商品类目<span class="caret"></span></button>
+                                                <ul class="dropdown-menu" id="dropdown_menu">
+                                                </ul>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="commodityName">商品名字</label>
+                                                <input type="text" class="form-control" id="commodityName" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="commodityNum">商品数量</label>
+                                                <input type="text" class="form-control" id="commodityNum" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="commodityPrice">商品价格</label>
+                                                <input type="text" class="form-control" id="commodityPrice" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="commoditySpecification">商品规格(描述)</label>
+                                                <input type="text" class="form-control" id="commoditySpecification" placeholder="">
+                                            </div>
                                             <div class="form-group">
                                                 <label>商品是否上架</label>
                                                 <label class="radio-inline">
@@ -415,33 +349,30 @@
                                                 </label>
                                             </div>
                                             <div class="form-group">
-                                            <label for="skuCode">商品条码</label>
-                                            <input type="text" class="form-control" id="skuCode" placeholder="">
-                                          </div>
-<!--                                           <div class="form-group">
-                                            <label for="token">token</label>
-                                            <input type="text" class="form-control" id="token" placeholder="">
-                                          </div> -->
-                                          <div class="form-group">
-                                            <label for="commodityImage">上传商品图片</label>
-                                            <input type="file" id="commodityImage">   
-                                          </div>
-                                        </form>                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-default" style="margin-left: 450px" onclick="addCommodity">添加</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                        </div>
+                                                <label for="skuCode">商品条码</label>
+                                                <input type="text" class="form-control" id="skuCode" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="commodityImage">上传商品图片</label>
+                                                <input type="file" name="commodityImage" id="commodityImage" class="file-loading">
+                                            </div>
+                                        </form>                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default" style="margin-left: 450px" onclick="addCommodity()">添加</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     
-                     <!-- End Modals-->
+                    <!-- End Modals-->
 
 <!--                         <table>
-                            <tbody> -->
-                                <!-- <tr> -->
+            <tbody> -->
+        <!-- <tr> -->
 <!--                                     <th>
                                         <div class="btn-group">
                                           <button type="button" class="btn btn-default">商品展示页面选择</button>
@@ -482,26 +413,26 @@
                                     <th>
                                         <button type="submit" class="btn btn-default">搜索</button>
                                     </th> -->
-                    <!--             </tr> -->
+                                    <!--             </tr> -->
 <!--                             </tbody>
                         </table> -->
 
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>商品名称</th>
-                                            <th>商品价格</th>
-                                            <th>商品描述</th>
-                                            <th>商品图片</th>
-                                            <th>商品数量</th>
-                                            <th>商品类目</th>
-                                            <th>是否上架</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-body">
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>商品价格</th>
+                    <th>商品描述</th>
+                    <th>商品图片</th>
+                    <th>商品数量</th>
+                    <th>商品类目</th>
+                    <th>是否上架</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
                                         <!-- <tr class="odd gradeX">
                                             <td>Trident</td>
                                             <td>Internet Explorer 4.0</td>
@@ -509,189 +440,43 @@
                                             <td class="center">4</td>
                                             <td class="center">X</td>
                                         </tr>
-                                        -->
-                                    </tbody>
-                                </table>
-                            </div>
-                            
+                                    -->
+                                </tbody>
+                            </table>
                         </div>
+
                     </div>
-                    <!--End Advanced Tables -->
                 </div>
-            </div>
-                <!-- /. ROW  -->
-        
-                </div>
+                <!--End Advanced Tables -->
             </div>
         </div>
+        <!-- /. ROW  -->
+        
     </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-     <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-     <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                //设置右上角账号名称
-                document.getElementById('username').innerHTML = sessionStorage.getItem('username');
-                //刷新table
-                reFresh()
-                //获取商品类目
-                getAllCategory()
-            });
+</div>
+</div>
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<!-- FileInput -->
+<!-- <script src="assets/js/locales/zh.js"></script> -->
+<script src="assets/js/fileinput.min.js"></script>
+<script type="text/javascript" src="assets/js/commodity.js"></script>
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
 
-            //商品操作
-            function operateCommodity(disable,btn){
-                var status
-                if (disable == 0) {
-                    console.log('点击将上架')
-                    status = 1
-                } else {
-                    console.log('点击将下架')
-                    status = 0
-                }
-                var mydata = {
-                    "commodityId": btn.value,
-                    "disable": status,
-                    "token": sessionStorage.getItem('token')
-                }
-                var reqdata = JSON.stringify(mydata)
-                $.ajax({
-                    method: "POST",
-                    url: "http://47.106.14.214:9033/api/commodity/upOrDownCommodity",
-                    contentType: "application/json;charset=utf-8",
-                    data: reqdata,
-                    async: false,
-                    success: function(res){
-                        alert(res.msg)
-                    }
-                })
-                window.location.reload()
-            }
 
-            //时间戳转时间
-            function timestampToTime(timestamp) {
-                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-                var Y = date.getFullYear() + '-';
-                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                var D = date.getDate() + ' ';
-                var h = date.getHours() + ':';
-                var m = date.getMinutes() + ':';
-                var s = date.getSeconds();
-                return Y+M+D+h+m+s;
-            }
-
-            //获取商品列表
-            function reFresh()
-            {
-            var mydata = {
-                "pageNo": 1,
-                "pageSize": 1000,
-                "disable": 1,
-                "token": sessionStorage.getItem('token')
-            }
-            var reqdata = JSON.stringify(mydata)
-            $.ajax({
-                type: "POST",
-                url: "http://47.106.14.214:9033/api/commodity/getCommodityList",
-                contentType: "application/json;charset=utf-8",
-                data: reqdata,
-                success: function(res){
-                    if (res.code == "0000") {
-                        var list = res.data.data
-                        // console.log(list)
-
-                        //添加订单记录
-                        for (var i = 0; i < list.length; i++) {
-                            //数据转化处理
-                            var disable,btnText;
-                            // var date = timestampToTime(res.data[i].createTime)
-                            if (list[i].disable == '0') {
-                                disable = "否"
-                                btnText = "上架"
-                            } else {
-                                disable = "是"
-                                btnText = "下架"
-                            }
-                            //添加到table
-                            var tr = "<tr class='odd gradeX'>";
-                            tr += "<td>" + list[i].commodityName + "</td>";
-                            tr += "<td>" + list[i].commodityPrice + "</td>";
-                            tr += "<td>" + list[i].commoditySpecification + "</td>";   
-                            tr += "<td>" + list[i].commodityImage + "</td>";
-                            tr += "<td>" + list[i].commodityNum + "</td>";
-                            tr += "<td>" + list[i].commodityCategory + "</td>";
-                            tr += "<td>" + disable + "</td>";
-                            tr += "<td><button onclick='operateCommodity("+list[i].disable+",this)' class='btn btn-primary' value='"+list[i].commodityId+"'>"+btnText+"</button></td>";
-                            tr += "</tr>";
-                            tr += "</tr>";
-                            $("#table-body").append(tr);
-                        }
-                        $('#dataTables-example').dataTable({
-                            //bFilter: false,    //去掉搜索框方法三：这种方法可以
-                            bLengthChange: false,   //去掉每页显示多少条数据方法
-                            striped: true,  //隔行变色的效果
-
-                        });
-                    } else {
-                        console.log(res)
-                        alert(res.msg)
-                    }
-                }
-            })
-        }
-
-            function getAllCategory(){
-                var mydata = {"token": sessionStorage.getItem('token')}
-                var reqdata = JSON.stringify(mydata)
-                $.ajax({
-                    type: "POST",
-                    url: "http://47.106.14.214:9033/api/category/getAllCategory",
-                    contentType: "application/json;charset=utf-8",
-                    data: reqdata,
-                    success: function(res){
-                        if (res.code == "0000") {
-                            sessionStorage.setItem('category', res.data)
-                            // $('#dropdown_menu').contents().remove()
-                            var h = "";
-                            for (var i = 0; i < res.data.length; i++) {
-                                // var a = "<li><a onclick=categoryChange("+i+")>"+res.data[i].categoryName+"</a></li>"
-                                h += "<option value='" + i + "'>" + res.data[i].categoryName + "</option>";  
-                                // $(<li><a href="#" id=res.data[i].categoryType value=res.data[i].categoryId>res.data[i].categoryName</a></li>).appendTo('#moderator-s');
-                            }
-                            $('#dropdown_menu').append(h)
-                            console.log('更新商品类目成功')
-                        }else {
-                            alert(res.msg)
-                        }
-                    }
-                })
-            }
-
-            function categoryChange(i){
-                console.log(i)
-                var category = sessionStorage.getItem('category')
-                console.log(category)
-                var index = parseInt(i)
-                console.log(category[index].categoryName)
-            }
-
-            function addCommodity(){
-
-            }
-    </script>
-         <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
-    
-   
-</body>
-</html>
+    </body>
+    </html>
