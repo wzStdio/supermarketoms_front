@@ -1,14 +1,14 @@
 var imageSrc
-var index
+var category
 $(document).ready(function () {
     //设置右上角账号名称
     document.getElementById('username').innerHTML = sessionStorage.getItem('username');
-    //刷新table
-    reFresh()
     //获取商品类目
     getAllCategory()
+    //刷新table
+    reFresh()
     //初始化fileinput
-    $('#commodityImage').fileinput({
+    $('#multipartFile').fileinput({
             'language': 'zh',
             'uploadUrl': "http://47.106.14.214:9033/api/uploadImage/uploadImg",
             'allowedFileExtensions': ['jpg','jpeg','png'],
@@ -22,7 +22,8 @@ $(document).ready(function () {
             'maxFileCount': 1,
             'enctype': 'multipart/form-data',
     }).on("fileuploaded", function(event, data){
-        console.log('图片上传成功')
+        // console.log('图片上传成功')
+        console.log(data)
         imageSrc = data.response.data
     })
     });
@@ -86,19 +87,26 @@ function timestampToTime(timestamp) {
             success: function(res){
                 if (res.code == "0000") {
                     var list = res.data.data
-                // console.log(list)
+                    // console.log(category)
 
                 //添加订单记录
                 for (var i = 0; i < list.length; i++) {
                     //数据转化处理
-                    var disable,btnText;
+                    var disable,btnText,categoryName;
                     // var date = timestampToTime(res.data[i].createTime)
+                    //商品是否上架
                     if (list[i].disable == '0') {
                         disable = "否"
                         btnText = "上架"
                     } else {
                         disable = "是"
                         btnText = "下架"
+                    }
+                    //商品类目
+                    for (var j = 0; j < category.length; j++) {
+                        if (list[i].commodityCategory == category[j].categoryType) {
+                            categoryName = category[j].categoryName
+                        }
                     }
                     //添加到table
                     var tr = "<tr class='odd gradeX'>";
@@ -107,7 +115,7 @@ function timestampToTime(timestamp) {
                                                 tr += "<td>" + list[i].commoditySpecification + "</td>";   
                                                 tr += "<td>" + list[i].commodityImage + "</td>";
                                                 tr += "<td>" + list[i].commodityNum + "</td>";
-                                                tr += "<td>" + list[i].commodityCategory + "</td>";
+                                                tr += "<td>" + categoryName + "</td>";
                                                 tr += "<td>" + disable + "</td>";
                     tr += "<td><button onclick='operateCommodity("+list[i].disable+",this)' class='btn btn-primary' value='"+list[i].commodityId+"'>"+btnText+"</button></td>";
                                                 tr += "</tr>";
@@ -140,18 +148,23 @@ function timestampToTime(timestamp) {
             url: "http://47.106.14.214:9033/api/category/getAllCategory",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
+            async: false,
             success: function(res){
                 if (res.code == "0000") {
-                    sessionStorage.setItem('category', res.data)
+                    // sessionStorage.setItem('category', res.data)
                     // $('#dropdown_menu').contents().remove()
-                    var h = "";
+                    category = res.data
+                    // var h = "";
                     for (var i = 0; i < res.data.length; i++) {
+                        var h = ""
                         // var a = "<li><a onclick=categoryChange("+i+")>"+res.data[i].categoryName+"</a></li>"
-                        h += "<option value='" + i + "'>" + res.data[i].categoryName + "</option>";  
+                        h += "<option value='" + i + "'>" + res.data[i].categoryName + "</option>" 
+                        // h += "<li><a value='" + i + "'>" + res.data[i].categoryName + "</a></li>" 
                         // $(<li><a href="#" id=res.data[i].categoryType value=res.data[i].categoryId>res.data[i].categoryName</a></li>).appendTo('#moderator-s');
+                        $('#dropdown_menu').append(h)
                     }
-                    $('#dropdown_menu').append(h)
-                    console.log('更新商品类目成功')
+                    // $('#dropdown_menu').append(h)
+                    // console.log('更新商品类目成功')
                 } else if (res.code == "1001"){
                     console.log('token error')
                     alert(res.msg)
@@ -172,28 +185,17 @@ function timestampToTime(timestamp) {
     }
 
     function addCommodity(){
+        // console.log(imageSrc)
         // console($('#dropdown_menu'))
-        //商品类目处理
-        var category = sessionStorage.getItem('category')
+        var index = $('#dropdown_menu option:selected').val()
         //商品是否为首页处理
-        var commodityType_value
-        var commodityType = document.getElementByTagName('optionsRadiosInline')
-        for (var i = 0; i < commodityType.length; i++) {
-            if(commodityType[i].checked){
-                commodityType_value = commodityType[i].value
-            }
-        }
+        var commodityType_value = $("input[name='optionsRadiosInline1']:checked").val();
         //商品是否上架处理
-        var disable_value
-        var disable = document.getElementByTagName('optionsRadiosInline1')
-        for (var i = 0; i < disable.length; i++) {
-            if (disable[i].checked) {
-                disable_value = disable[i].value
-            }
-        }
+        var disable_value = $("input[name='optionsRadiosInline']:checked").val();
+
         var mydata = {
             "categoryId": category[index].categoryId,
-            "commodityCategory": category[index].categoryName,
+            "commodityCategory": category[index].categoryType,
             "commodityImage": imageSrc,
             "commodityName": document.getElementById('commodityName').value,
             "commodityNum": document.getElementById('commodityNum').value,
@@ -207,11 +209,12 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: 'POST',
-            url: "http://47.106.14.214:9033/api/advertising/addAdvertising",
+            url: "http://47.106.14.214:9033/api/commodity/addOrUpdateCommodity",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
             success: function(res){
+                // alert(res.msg)
                 if (res.code = "0000") {
                     alert('添加成功')
                 }
@@ -227,4 +230,25 @@ function timestampToTime(timestamp) {
             }
         })
 
+    }
+
+    function addCategory(){
+        var mydata = {
+            "categoryName": document.getElementById('categoryName').value,
+            "token": sessionStorage.getItem('token')
+        }
+        console.log(mydata)
+        var reqdata = JSON.stringify(mydata)
+        $.ajax({
+            type: 'POST',
+            url: "http://47.106.14.214:9033/api/category/saveCategory",
+            contentType: "application/json;charset=utf-8",
+            data: reqdata,
+            async: false,
+            success: function(res){
+                alert(res.msg)
+                $('#myModal1').modal('hide')
+                window.location.reload()
+            }
+        })
     }

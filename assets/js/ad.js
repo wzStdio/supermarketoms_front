@@ -89,7 +89,7 @@ $(document).ready(function () {
         'maxFileCount': 1,
         'enctype': 'multipart/form-data',
     }).on("fileuploaded", function(event, data){
-    	console.log('图片上传成功')
+    	// console.log('图片上传成功')
     	imageSrc = data.response.data
     })
     
