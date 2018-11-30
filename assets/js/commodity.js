@@ -1,6 +1,7 @@
 var imageSrc
 var category
-var host = "http://47.106.14.214:9033/api"
+// var host = "http://47.106.14.214:9033/api"
+var host = "https://www.zzh1019.cn/supermarket/api"
 $(document).ready(function () {
     //设置右上角账号名称
     document.getElementById('username').innerHTML = sessionStorage.getItem('username');

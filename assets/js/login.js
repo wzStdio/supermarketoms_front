@@ -1,4 +1,5 @@
-var host = "http://47.106.14.214:9033/api"
+// var host = "http://47.106.14.214:9033/api"
+var host = "https://www.zzh1019.cn/supermarket/api"
 window.onload = function(){
     var username = document.getElementById('username')
     var psw = document.getElementById('psw')

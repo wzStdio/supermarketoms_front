@@ -1,6 +1,6 @@
-
 var imageSrc
-var host = "http://47.106.14.214:9033/api"
+// var host = "http://47.106.14.214:9033/api"
+var host = "https://www.zzh1019.cn/supermarket/api"
 //广告操作
 function operateAd(disable,btn){
     var mydata = {

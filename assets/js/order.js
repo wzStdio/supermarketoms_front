@@ -1,4 +1,5 @@
-var host = "http://47.106.14.214:9033/api"
+// var host = "http://47.106.14.214:9033/api"
+var host = "https://www.zzh1019.cn/supermarket/api"
 //订单操作
 function operateOrder(disable,btn){
     var mydata = {
