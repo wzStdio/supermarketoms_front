@@ -1,3 +1,4 @@
+var host = "http://47.106.14.214:9033/api"
 //订单操作
 function operateOrder(disable,btn){
     var mydata = {
@@ -8,12 +9,21 @@ function operateOrder(disable,btn){
     if (disable=='0') {
         $.ajax({
             method: "POST",
-            url: "http://47.106.14.214:9033/api/order/finishOrder",
+            url: host + "/order/finishOrder",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
             success: function(res){
-                alert(res.msg)
+                if (res.code == "0000") {
+                	alert(res.msg)
+                } else if (res.code == "1001"){
+                	console.log('token error')
+                	alert(res.msg)
+                	window.location.href='./login.html'
+            	}else {
+                	console.log(res)
+                	alert(res.msg)
+            	}          
             }
         })
         console.log('禁用')
@@ -22,19 +32,21 @@ function operateOrder(disable,btn){
     }
     window.location.reload()
 }
+
 $(document).ready(function () {
     // $('#dataTables-example').dataTable({
     //     bFilter: false,    //去掉搜索框方法三：这种方法可以
     //     bLengthChange: false,   //去掉每页显示多少条数据方法
     // });
 });
+
 document.getElementById('username').innerHTML = sessionStorage.getItem('username')
 var mydata = {"token": sessionStorage.getItem('token')}
 //console.log(sessionStorage.getItem('token'))
 var reqdata = JSON.stringify(mydata)
 $.ajax({
     type: "POST",
-    url: "http://47.106.14.214:9033/api/order/getOrderList",
+    url: host + "/order/getOrderList",
     contentType: "application/json;charset=utf-8",
     data: reqdata,
     success: function(res){

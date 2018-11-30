@@ -1,5 +1,6 @@
 var imageSrc
 var category
+var host = "http://47.106.14.214:9033/api"
 $(document).ready(function () {
     //设置右上角账号名称
     document.getElementById('username').innerHTML = sessionStorage.getItem('username');
@@ -10,7 +11,7 @@ $(document).ready(function () {
     //初始化fileinput
     $('#multipartFile').fileinput({
             'language': 'zh',
-            'uploadUrl': "http://47.106.14.214:9033/api/uploadImage/uploadImg",
+            'uploadUrl': host + "/uploadImage/uploadImg",
             'allowedFileExtensions': ['jpg','jpeg','png'],
             'showUpload': true,
             'previewFileType': 'any',
@@ -46,7 +47,7 @@ $(document).ready(function () {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             method: "POST",
-            url: "http://47.106.14.214:9033/api/commodity/upOrDownCommodity",
+            url: host + "/commodity/upOrDownCommodity",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
@@ -81,7 +82,7 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: "POST",
-            url: "http://47.106.14.214:9033/api/commodity/getCommodityList",
+            url: host + "/commodity/getCommodityList",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             success: function(res){
@@ -145,7 +146,7 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: "POST",
-            url: "http://47.106.14.214:9033/api/category/getAllCategory",
+            url: host + "/category/getAllCategory",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
@@ -209,7 +210,7 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: 'POST',
-            url: "http://47.106.14.214:9033/api/commodity/addOrUpdateCommodity",
+            url: host + "/commodity/addOrUpdateCommodity",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
@@ -241,12 +242,21 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: 'POST',
-            url: "http://47.106.14.214:9033/api/category/saveCategory",
+            url: "/category/saveCategory",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
             success: function(res){
-                alert(res.msg)
+                if (res.code == "0000") {
+                    alert(res.msg)
+                } else if (res.code == "1001"){
+                    console.log('token error')
+                    alert(res.msg)
+                    window.location.href='./login.html'
+                }else {
+                    console.log(res)
+                    alert(res.msg)
+                }
                 $('#myModal1').modal('hide')
                 window.location.reload()
             }

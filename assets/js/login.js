@@ -1,3 +1,4 @@
+var host = "http://47.106.14.214:9033/api"
 window.onload = function(){
     var username = document.getElementById('username')
     var psw = document.getElementById('psw')
@@ -38,7 +39,7 @@ function login() {
         var reqdata = JSON.stringify(mydata);
         $.ajax({
             type: "POST",
-            url: "http://47.106.14.214:9033/api/user/omsLogin",
+            url: host + "/user/omsLogin",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             success: function(res){

@@ -1,6 +1,6 @@
 
 var imageSrc
-
+var host = "http://47.106.14.214:9033/api"
 //广告操作
 function operateAd(disable,btn){
     var mydata = {
@@ -11,12 +11,21 @@ function operateAd(disable,btn){
     if (disable=='0') {
         $.ajax({
             method: "POST",
-            url: "http://47.106.14.214:9033/api/advertising/deleteAdvertising",
+            url: host + "/advertising/deleteAdvertising",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
             success: function(res){
-                alert(res.msg)
+                if (res.code == "0000") {
+                    alert(res.msg)
+                } else if (res.code == "1001"){
+                    console.log('token error')
+                    alert(res.msg)
+                    window.location.href='./login.html'
+                }else {
+                    console.log(res)
+                    alert(res.msg)
+                }
             }
         })
         console.log('禁用')
@@ -49,7 +58,7 @@ function addAd(){
     var reqdata = JSON.stringify(mydata)
     $.ajax({
         type: 'POST',
-        url: "http://47.106.14.214:9033/api/advertising/addAdvertising",
+        url: host + "/advertising/addAdvertising",
         contentType: "application/json;charset=utf-8",
         data: reqdata,
         async: false,
@@ -77,7 +86,7 @@ $(document).ready(function () {
 
     $('#multipartFile').fileinput({
         'language': 'zh',
-        'uploadUrl': "http://47.106.14.214:9033/api/uploadImage/uploadImg",
+        'uploadUrl': host + "/uploadImage/uploadImg",
         'allowedFileExtensions': ['jpg','jpeg','png'],
         'showUpload': true,
         'showCancel':false,
@@ -101,7 +110,7 @@ function reFresh()
     var reqdata = JSON.stringify(mydata)
     $.ajax({
         type: "POST",
-        url: "http://47.106.14.214:9033/api/advertising/getAllAdvertising",
+        url: host + "/advertising/getAllAdvertising",
         contentType: "application/json;charset=utf-8",
         data: reqdata,
         success: function(res){
