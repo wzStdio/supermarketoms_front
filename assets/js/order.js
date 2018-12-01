@@ -14,10 +14,11 @@ function timestampToTime(timestamp) {
 //订单操作
 function operateOrder(disable,btn){
     var mydata = {
-        "orderId": btn.value
-        // "token": sessionStorage.getItem('token')
+        "orderId": btn.value,
+        "token": sessionStorage.getItem('token')
     }
     var reqdata = JSON.stringify(mydata)
+    debugger
     if (disable=='0') {
         $.ajax({
             method: "POST",

@@ -55,11 +55,11 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 table.dataTable thead .sorting {
-    background: url('../images/sort_both.png') no-repeat center right;
+    /* background: url('../images/sort_both.png') no-repeat center right; */
 }
 
 table.dataTable thead .sorting_asc {
-    background: url('../images/sort_asc.png') no-repeat center right;
+    /* background: url('../images/sort_asc.png') no-repeat center right; */
 }
 
 table.dataTable thead .sorting_desc {
