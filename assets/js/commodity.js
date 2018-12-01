@@ -32,20 +32,12 @@ $(document).ready(function () {
 
     //商品操作
     function operateCommodity(disable,btn){
-        var status
-        if (disable == 0) {
-            console.log('点击将上架')
-            status = 1
-        } else {
-            console.log('点击将下架')
-            status = 0
-        }
         var mydata = {
             "commodityId": btn.value,
-            "disable": status,
             "token": sessionStorage.getItem('token')
         }
         var reqdata = JSON.stringify(mydata)
+        console.info(reqdata)
         $.ajax({
             method: "POST",
             url: host + "/commodity/upOrDownCommodity",
@@ -74,10 +66,11 @@ function timestampToTime(timestamp) {
     //获取商品列表
     function reFresh()
     {
+        
         var mydata = {
             "pageNo": 1,
             "pageSize": 1000,
-            "disable": 1,
+            // "disable": 1,
             "token": sessionStorage.getItem('token')
         }
         var reqdata = JSON.stringify(mydata)
