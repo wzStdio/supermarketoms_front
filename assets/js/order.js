@@ -1,5 +1,16 @@
 // var host = "http://47.106.14.214:9033/api"
 var host = "https://www.zzh1019.cn/supermarket/api"
+//时间戳转时间
+function timestampToTime(timestamp) {
+    var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    var D = date.getDate() + ' ';
+    var h = date.getHours() + ':';
+    var m = date.getMinutes() + ':';
+    var s = date.getSeconds();
+    return Y+M+D+h+m+s;
+}
 //订单操作
 function operateOrder(disable,btn){
     var mydata = {
@@ -55,7 +66,7 @@ $.ajax({
             //添加订单记录
             for (var i = 0; i < res.data.length; i++) {
                 var disable,btnText,btn_style;
-                // var date = timestampToTime(res.data[i].createTime)
+                var date = timestampToTime(res.data[i].createTime)
                 //console.log(date)
                 if (res.data[i].orderStatus == '0') {
                     disable = "未完成"
@@ -75,6 +86,7 @@ $.ajax({
                     tr += "<td>" + res.data[i].userName + "</td>";
                     tr += "<td>" + res.data[i].telephone + "</td>";
                     tr += "<td>" + res.data[i].fullAddress + "</td>";
+                    tr += "<td>" + date + "</td>";
                     tr += "<td>" + disable + "</td>";
                     tr += "<td><button onclick='operateOrder("+res.data[i].orderStatus+",this)' class='btn "+btn_style+"' value='"+res.data[i].orderId+"'>"+btnText+"</button></td>";
                     tr += "</tr>";

@@ -88,7 +88,7 @@ function timestampToTime(timestamp) {
                 for (var i = 0; i < list.length; i++) {
                     //数据转化处理
                     var disable,btnText,categoryName;
-                    // var date = timestampToTime(res.data[i].createTime)
+                    var date = timestampToTime(list[i].createTime)
                     //商品是否上架
                     if (list[i].disable == '0') {
                         disable = "否"
@@ -105,13 +105,14 @@ function timestampToTime(timestamp) {
                     }
                     //添加到table
                     var tr = "<tr class='odd gradeX'>";
-                                                tr += "<td>" + list[i].commodityName + "</td>";
-                                                tr += "<td>" + list[i].commodityPrice + "</td>";
-                                                tr += "<td>" + list[i].commoditySpecification + "</td>";   
-                                                tr += "<td>" + list[i].commodityImage + "</td>";
-                                                tr += "<td>" + list[i].commodityNum + "</td>";
-                                                tr += "<td>" + categoryName + "</td>";
-                                                tr += "<td>" + disable + "</td>";
+                    tr += "<td>" + list[i].commodityName + "</td>";
+                    tr += "<td>" + list[i].commodityPrice + "</td>";
+                    tr += "<td>" + list[i].commoditySpecification + "</td>";   
+                    tr += "<td>" + list[i].commodityImage + "</td>";
+                    tr += "<td>" + list[i].commodityNum + "</td>";
+                    tr += "<td>" + categoryName + "</td>";
+                    tr += "<td>" + disable + "</td>";
+                    tr += "<td>" + date + "</td>";
                     tr += "<td><button onclick='operateCommodity("+list[i].disable+",this)' class='btn btn-primary' value='"+list[i].commodityId+"'>"+btnText+"</button></td>";
                                                 tr += "</tr>";
                                                 tr += "</tr>";
