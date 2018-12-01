@@ -237,7 +237,7 @@ function timestampToTime(timestamp) {
         var reqdata = JSON.stringify(mydata)
         $.ajax({
             type: 'POST',
-            url: "/category/saveCategory",
+            url: host + "/category/saveCategory",
             contentType: "application/json;charset=utf-8",
             data: reqdata,
             async: false,
