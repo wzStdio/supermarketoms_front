@@ -28,10 +28,10 @@ function operateOrder(disable,btn){
             }
         })
         console.log('禁用')
+        window.location.reload()
     } else {
         // console.log('启用')
     }
-    window.location.reload()
 }
 
 $(document).ready(function () {
@@ -54,15 +54,17 @@ $.ajax({
         if (res.code == "0000") {
             //添加订单记录
             for (var i = 0; i < res.data.length; i++) {
-                var disable,btnText;
+                var disable,btnText,btn_style;
                 // var date = timestampToTime(res.data[i].createTime)
                 //console.log(date)
                 if (res.data[i].orderStatus == '0') {
                     disable = "未完成"
                     btnText = "标记为完成"
+                    btn_style = "btn-primary"
                 } else {
                     disable = "已完成"
                     btnText = "无法操作"
+                    btn_style = "disabled"
                 }
 
                 var tr = "<tr class='odd gradeX'>";
@@ -74,7 +76,7 @@ $.ajax({
                     tr += "<td>" + res.data[i].telephone + "</td>";
                     tr += "<td>" + res.data[i].fullAddress + "</td>";
                     tr += "<td>" + disable + "</td>";
-                    tr += "<td><button onclick='operateOrder("+res.data[i].orderStatus+",this)' class='btn btn-primary' value='"+res.data[i].orderId+"'>"+btnText+"</button></td>";
+                    tr += "<td><button onclick='operateOrder("+res.data[i].orderStatus+",this)' class='btn "+btn_style+"' value='"+res.data[i].orderId+"'>"+btnText+"</button></td>";
                     tr += "</tr>";
                     $("#table-body").append(tr);
             }
