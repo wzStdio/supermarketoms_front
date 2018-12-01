@@ -3,10 +3,11 @@ var host = "https://www.zzh1019.cn/supermarket/api"
 //订单操作
 function operateOrder(disable,btn){
     var mydata = {
-        "orderId": btn.value
-        // "token": sessionStorage.getItem('token')
+        "orderId": btn.value,
+        "token": sessionStorage.getItem('token')
     }
     var reqdata = JSON.stringify(mydata)
+    debugger
     if (disable=='0') {
         $.ajax({
             method: "POST",
