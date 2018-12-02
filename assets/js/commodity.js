@@ -111,6 +111,7 @@ function timestampToTime(timestamp) {
                     tr += "<td>" + list[i].commodityImage + "</td>";
                     tr += "<td>" + list[i].commodityNum + "</td>";
                     tr += "<td>" + categoryName + "</td>";
+                    tr += "<td>" + list[i].skuCode + "</td>";
                     tr += "<td>" + disable + "</td>";
                     tr += "<td>" + date + "</td>";
                     tr += "<td><button onclick='operateCommodity("+list[i].disable+",this)' class='btn btn-primary' value='"+list[i].commodityId+"'>"+btnText+"</button></td>";
@@ -231,6 +232,7 @@ function timestampToTime(timestamp) {
     function addCategory(){
         var mydata = {
             "categoryName": document.getElementById('categoryName').value,
+            "categoryType": document.getElementById('categoryType').value,
             "token": sessionStorage.getItem('token')
         }
         console.log(mydata)
