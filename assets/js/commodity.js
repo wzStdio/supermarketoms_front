@@ -1,4 +1,4 @@
-var imageSrc
+var imageSrc = "null"
 var category
 // var host = "http://47.106.14.214:9033/api"
 var host = "https://www.zzh1019.cn/supermarket/api"
@@ -28,6 +28,55 @@ $(document).ready(function () {
         console.log(data)
         imageSrc = data.response.data
     })
+    //初始化表单验证
+    // $('#myModal').bootstrapValidator({
+    //     feedbackIcons: {
+    //         valid: 'glyphicon glyphicon-ok',
+    //         invalid: 'glyphicon glyphicon-remove',
+    //         validating: 'glyphicon glyphicon-refresh'
+    //     },
+    //     commodityName: {
+    //         message: '商品名称验证失败',
+    //         validators: {
+    //             noEmpty: {
+    //                 message: '商品名称不能为空'
+    //             }
+    //         }
+    //     },
+    //     commodityNum: {
+    //         message: '商品数量验证失败',
+    //         validators: {
+    //             noEmpty: {
+    //                 message: '商品数量不能为空'
+    //             }
+    //         }
+    //     },
+    //     commodityPrice: {
+    //         message: '商品价格验证失败',
+    //         validators: {
+    //             noEmpty: {
+    //                 message: '商品价格不能为空'
+    //             }
+    //         }
+    //     },
+    //     commoditySpecification: {
+    //         message: '商品描述验证失败',
+    //         validators: {
+    //             noEmpty: {
+    //                 message: '商品描述不能为空'
+    //             }
+    //         }
+    //     },
+    //     skuCode: {
+    //         message: '商品条码验证失败',
+    //         validators: {
+    //             noEmpty: {
+    //                 message: '商品条码不能为空'
+    //             }
+    //         }
+    //     }
+    // })
+
     });
 
     //商品操作
@@ -51,8 +100,8 @@ $(document).ready(function () {
         window.location.reload()
     }
 
-//时间戳转时间
-function timestampToTime(timestamp) {
+    //时间戳转时间
+    function timestampToTime(timestamp) {
         var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
         var Y = date.getFullYear() + '-';
         var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -61,6 +110,16 @@ function timestampToTime(timestamp) {
         var m = date.getMinutes() + ':';
         var s = date.getSeconds();
         return Y+M+D+h+m+s;
+    }
+
+    //判断是否为数字
+    function IsNum(s)
+    {
+        if (s!=null && s!="")
+        {
+            return !isNaN(s);
+        }
+        return false;
     }
 
     //获取商品列表
@@ -190,6 +249,22 @@ function timestampToTime(timestamp) {
         //商品是否上架处理
         var disable_value = $("input[name='optionsRadiosInline']:checked").val();
 
+        var commodityName = document.getElementById('commodityName').value
+        var commodityNum = document.getElementById('commodityNum').value
+        var commodityPrice = document.getElementById('commodityPrice').value
+        var commoditySpecification = document.getElementById('commoditySpecification').value
+        var skuCode = document.getElementById('skuCode').value
+
+        //空值处理
+        if (commodityName=="" || !IsNum(commodityNum) || !IsNum(commodityPrice) || commoditySpecification=="" || skuCode=="") {
+            alert('商品名字，描述，条码不能为空。或商品价格，数量输入非法。')
+            return
+        }
+        if (imageSrc=="null") {
+            alert('没有上传商品图片')
+            return
+        }
+
         var mydata = {
             "categoryId": category[index].categoryId,
             "commodityCategory": category[index].categoryType,
@@ -230,6 +305,14 @@ function timestampToTime(timestamp) {
     }
 
     function addCategory(){
+        var categoryName = document.getElementById('categoryName').value
+        var categoryType = document.getElementById('categoryType').value
+
+        if (categoryName=="" || IsNum(categoryType)) {
+            alert('类目名称不能为空，或类目编号输入了非法值')
+            return
+        }
+
         var mydata = {
             "categoryName": document.getElementById('categoryName').value,
             "categoryType": document.getElementById('categoryType').value,

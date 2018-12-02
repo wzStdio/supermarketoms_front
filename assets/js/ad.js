@@ -1,4 +1,4 @@
-var imageSrc
+var imageSrc = null
 // var host = "http://47.106.14.214:9033/api"
 var host = "https://www.zzh1019.cn/supermarket/api"
 //广告操作
@@ -48,6 +48,13 @@ function timestampToTime(timestamp) {
 
 //添加广告
 function addAd(){
+    //表单验证
+    console.log(imageSrc)
+    if (imageSrc==null) {
+        alert('广告图片不能为空')
+        return
+    }
+
     //拿返回来的图片链接进行广告添加
     var mydata = {
         "advertisingTitle": document.getElementById('adTittle').value,
